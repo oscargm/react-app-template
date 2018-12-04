@@ -44,7 +44,7 @@ class AppDrawerComponent extends React.Component<Props, {}> {
             >
                 <div className={classes.toolbar} />
                 <List>
-                    {items.map(item => { return (<AppDrawerItemComponent item={item} />) })}
+                    {items.map(item => { return (<AppDrawerItemComponent item={item} key={item.key} />) })}
                 </List>
             </Drawer>
         );

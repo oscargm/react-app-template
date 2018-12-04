@@ -2,19 +2,22 @@ import * as React from "react"
 
 export interface SessionContextProps {
   username: string;
-  updateLogin: (value) => void;
+  isAuth: boolean,
+  updateLogin: (value, auth) => void;
   onLogout: () => void
 }
 
 export const createDefaultUser = (): SessionContextProps => ({
   username: 'no user',
-  updateLogin: (value) => { },
+  isAuth: false,
+  updateLogin: (value, auth) => { },
   onLogout: () => { }
 });
 
 export const SessionContext = React.createContext<SessionContextProps>(createDefaultUser());
 
 interface State extends SessionContextProps {
+  isAuth: boolean;
 }
 
 export class SessionProvider extends React.Component<{}, State> {
@@ -22,18 +25,19 @@ export class SessionProvider extends React.Component<{}, State> {
   constructor(props) {
     super(props);
     this.state = {
+      isAuth: false,
       username: createDefaultUser().username,
       updateLogin: this.setLoginInfo,
       onLogout: this.onLogout
     }
   }
 
-  setLoginInfo = (newUsername) => {
-    this.setState({ username: newUsername })
+  setLoginInfo = (newUsername, auth) => {
+    this.setState({ username: newUsername, isAuth: auth })
   }
 
   onLogout = () => {
-    this.setState({username: ''});
+    this.setState({ username: '',isAuth: false });
   }
 
   render() {

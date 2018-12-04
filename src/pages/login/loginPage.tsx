@@ -27,7 +27,7 @@ interface State {
 
 
 interface Props extends RouteComponentProps, WithStyles<typeof styles> {
-  updateLogin: (value) => void
+  updateLogin: (value, auth) => void
 }
 
 class LoginPageInner extends React.Component<Props, State> {
@@ -45,9 +45,9 @@ class LoginPageInner extends React.Component<Props, State> {
   onLogin = () => {
     loginFormValidation.validateForm(this.state.loginInfo)
       .then((formValidatinResult) => {
-        if(formValidatinResult.succeeded) {
+        if (formValidatinResult.succeeded) {
           if (isValidLogin(this.state.loginInfo)) {
-            this.props.updateLogin(this.state.loginInfo.username);
+            this.props.updateLogin(this.state.loginInfo.username, true);
             this.props.history.push('/clipped');
           } else {
             this.setState({ showLoginFailedMsg: true });
@@ -72,11 +72,11 @@ class LoginPageInner extends React.Component<Props, State> {
             ...this.state.loginFormErrors,
             [name]: fieldValidationResult,
           }
-        });        
+        });
       }
     );
   }
-  
+
   render() {
     const { classes } = this.props;
     return (
