@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
-import { UserArea } from './user';
+import { UserArea } from '../user';
 import { Grid } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';

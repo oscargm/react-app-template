@@ -3,8 +3,8 @@ import { SessionContext } from '../../common/'
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import { Navbar } from '../../common/navBar/components/navbar.component';
-
+import { Navbar } from '../../common/navBar/components/menu';
+import { createDefaultAppDrawer } from '../../model/appDrawerItem';
 
 const drawerWidth = 240;
 
@@ -24,22 +24,22 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 5,
   },
   toolbar: theme.mixins.toolbar,
 });
 
 function ClippedDrawerInner(props) {
   const { classes } = props;
-
+  const arrItems = [];
+  [1,2,3,4,5,6,7].forEach((id) => {arrItems.push(createDefaultAppDrawer(id))});
   return (
-
     <SessionContext.Consumer>
       {
         ({ username, onLogout }) => (
             <div className={classes.root}>
               <CssBaseline />
-              <Navbar pagename={'Main Page'} username={username} onLogout={onLogout}/>
+              <Navbar pagename={'Main Page'} username={username} onLogout={onLogout} appDrawerItems={arrItems}/>
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Typography paragraph>
