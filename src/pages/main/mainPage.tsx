@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { SessionContext } from '../../common/'
+import { SessionContext } from '../../common'
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { Navbar } from '../../common/navBar/components/menu';
-import { createDefaultAppDrawer } from '../../model/appDrawerItem';
+import { getAppdrawerItems } from '../../api/menu';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -30,10 +30,9 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
-function ClippedDrawerInner(props) {
+function MainPageInner(props) {
   const { classes } = props;
-  const arrItems = [];
-  [1, 2, 3, 4, 5, 6, 7].forEach((id) => { arrItems.push(createDefaultAppDrawer(id)) });
+  const arrItems = getAppdrawerItems();
   return (
     <SessionContext.Consumer>
       {
@@ -72,7 +71,9 @@ function ClippedDrawerInner(props) {
               </div>
             )
           } else {
-            <Link to="/">Back</Link>
+            return (
+              <Link to="/">Back</Link>
+            )
           }
         }
       }
@@ -81,4 +82,4 @@ function ClippedDrawerInner(props) {
 }
 
 
-export const ClippedDrawer = withStyles(styles)(ClippedDrawerInner);
+export const MainPage = withStyles(styles)(MainPageInner);

@@ -1,1 +1,1 @@
-export {ClippedDrawer} from './drawer-example';
+export {MainPage} from './mainPage';

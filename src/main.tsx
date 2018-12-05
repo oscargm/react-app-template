@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { LoginPage } from './pages/login';
-import { ClippedDrawer } from './pages/main';
+import { MainPage } from './pages/main';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { SessionProvider } from './common';
 
@@ -18,7 +18,7 @@ ReactDOM.render(
     <HashRouter>
       <Switch>
         <Route exact={true} path="/" component={LoginPage} />
-        <Route path="/clipped" component={ClippedDrawer} />
+        <Route path="/main" component={MainPage} />
       </Switch>
     </HashRouter>
     </SessionProvider>

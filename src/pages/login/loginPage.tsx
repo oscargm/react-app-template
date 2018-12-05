@@ -48,7 +48,7 @@ class LoginPageInner extends React.Component<Props, State> {
         if (formValidatinResult.succeeded) {
           if (isValidLogin(this.state.loginInfo)) {
             this.props.updateLogin(this.state.loginInfo.username, true);
-            this.props.history.push('/clipped');
+            this.props.history.push('/main');
           } else {
             this.setState({ showLoginFailedMsg: true });
           }
